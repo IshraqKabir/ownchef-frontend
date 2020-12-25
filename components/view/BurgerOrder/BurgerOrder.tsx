@@ -3,6 +3,7 @@ import IITemCategory from "../../model/IItemCategory"
 import AppbarView from "../Layout/Appbar/Appbar"
 import OptionsArea from "./OptionsArea/OptionsArea"
 
+import GlobalOrdersState from "../../contexts/Orders/GlobalOrdersState";
 
 interface IProps {
     itemCategories: IITemCategory[],
@@ -12,12 +13,12 @@ interface IProps {
 const Burger: React.FC<IProps> = ({ itemCategories }) => {
 
     return (
-        <>
+        <GlobalOrdersState>
             <AppbarView />
 
             <OptionsArea itemCategories={itemCategories} />
 
-        </>
+        </GlobalOrdersState>
     )
 }
 

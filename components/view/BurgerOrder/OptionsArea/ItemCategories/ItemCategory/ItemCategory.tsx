@@ -55,11 +55,12 @@ const AccordionSummary = withStyles({
 
 const AccordionDetails = withStyles((theme) => ({
     root: {
-        padding: theme.spacing(2)
+        textTransform: 'capitalize',
+        padding: 0,
     }
 }))(MuiAccordionDetails);
 
-const ItemCategories: React.FC<IProps> = ({ itemCategory, expandedIC, handleChange }) => {
+const ItemCategory: React.FC<IProps> = ({ itemCategory, expandedIC, handleChange }) => {
 
     const checkExpanded = (): boolean => {
         console.log('checking')
@@ -76,7 +77,7 @@ const ItemCategories: React.FC<IProps> = ({ itemCategory, expandedIC, handleChan
                 aria-controls={`panel${itemCategory.id}d-content`}
                 id={`panel${itemCategory.id}d-header`}
             >
-                <Typography>{itemCategory.name}</Typography>
+                <Typography variant="subtitle2" component="h1">{itemCategory.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <Items items={itemCategory.items} />
@@ -85,4 +86,4 @@ const ItemCategories: React.FC<IProps> = ({ itemCategory, expandedIC, handleChan
     )
 }
 
-export default ItemCategories;
+export default ItemCategory;

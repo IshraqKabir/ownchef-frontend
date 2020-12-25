@@ -14,7 +14,7 @@ const Items: React.FC<IProps> = ({ items }) => {
         )
     })
 
-    return <Box display="flex" flexDirection="column" minWidth="300px">
+    return <Box display="flex" flexDirection="column" minWidth="250px">
         {itemsList}
     </Box>
 }

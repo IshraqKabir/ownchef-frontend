@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import IITemCategory from "../../components/model/IItemCategory";
-import BurgerView from "../../components/view/Burger/Burger";
+import BurgerOrder from "../../components/view/BurgerOrder/BurgerOrder";
 
 import url from "../../components/utils/url";
 
@@ -25,7 +25,7 @@ interface IProps {
 const Burger: React.FC<IProps> = ({ itemCategories }) => {
 
     return (
-        <BurgerView itemCategories={itemCategories} />
+        <BurgerOrder itemCategories={itemCategories} />
     )
 }
 
