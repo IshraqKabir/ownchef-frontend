@@ -4,15 +4,17 @@ import BurgerView from "../../components/view/Burger/Burger";
 
 import url from "../../components/utils/url";
 
+const ONE_DAY = 24 * 60 * 60;
+
 export const getStaticProps: GetStaticProps = async (context) => {
-    const res = await fetch(`${url}/api/item-category/all`)
+    const res = await fetch(`${url}/api/1/item-category/all`)
     const itemCategories: IITemCategory[] = await res.json();
 
     return {
         props: {
             itemCategories: itemCategories
         },
-        revalidate: 10000,
+        revalidate: ONE_DAY,
     }
 }
 

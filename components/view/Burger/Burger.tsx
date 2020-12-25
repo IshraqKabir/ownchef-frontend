@@ -1,6 +1,7 @@
 import { Typography } from "@material-ui/core"
 import IITemCategory from "../../model/IItemCategory"
 import AppbarView from "../Layout/Appbar/Appbar"
+import OptionsArea from "./OptionsArea/OptionsArea"
 
 
 interface IProps {
@@ -9,13 +10,13 @@ interface IProps {
 
 
 const Burger: React.FC<IProps> = ({ itemCategories }) => {
+
     return (
         <>
             <AppbarView />
 
-            {itemCategories.map(ic => {
-                return (<Typography key={ic.id}>{ic.name}</Typography>)
-            })}
+            <OptionsArea itemCategories={itemCategories} />
+
         </>
     )
 }
