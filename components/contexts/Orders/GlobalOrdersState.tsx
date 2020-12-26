@@ -17,46 +17,19 @@ const GlobalOrdersState = props => {
             setOrders([
                 {
                     id: 1,
-                    items: {}
+                    items: [],
                 }
             ]);
             setCurrentOrderID(1);
         }
-
     }, [])
-
-    //   const products = [
-    //     { id: 'p1', title: 'Gaming Mouse', price: 29.99 },
-    //     { id: 'p2', title: 'Harry Potter 3', price: 9.99 },
-    //     { id: 'p3', title: 'Used plastic bottle', price: 0.99 },
-    //     { id: 'p4', title: 'Half-dried plant', price: 2.99 }
-    //   ];
-    //   // const [cart, setCart] = useState([]);
-    //   const [cartState, dispatch] = useReducer(shopReducer, { cart: [] });
-
-    //   const addProductToCart = product => {
-    //     setTimeout(() => {
-    //       // setCart(updatedCart);
-    //       dispatch({ type: ADD_PRODUCT, product: product });
-    //     }, 700);
-    //   };
-
-    //   const removeProductFromCart = productId => {
-    //     setTimeout(() => {
-    //       // setCart(updatedCart);
-    //       dispatch({ type: REMOVE_PRODUCT, productId: productId });
-    //     }, 700);
-    //   };
 
     return (
         <OrdersContext.Provider
             value={{
                 orders: orders,
                 currentOrderID: currentOrderID,
-                // products: products,
-                // cart: cartState.cart,
-                // addProductToCart: addProductToCart,
-                // removeProductFromCart: removeProductFromCart
+                setOrders: setOrders,
             }}
         >
             {props.children}

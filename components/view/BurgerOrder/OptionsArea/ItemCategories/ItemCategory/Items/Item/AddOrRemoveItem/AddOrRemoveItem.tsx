@@ -29,6 +29,7 @@ const AddOrRemoveItem: React.FC<IProps> = ({ item }) => {
         <Box display="flex">
             {quantity > 0 ?
                 <>
+
                     <RemoveIcon className={classes.icon} fontSize="small" onClick={() => {
                         if (quantity > 0) setQuantity(quantity - 1)
                     }} />
