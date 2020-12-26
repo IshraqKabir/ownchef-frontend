@@ -63,7 +63,6 @@ const AccordionDetails = withStyles((theme) => ({
 const ItemCategory: React.FC<IProps> = ({ itemCategory, expandedIC, handleChange }) => {
 
     const checkExpanded = (): boolean => {
-        console.log('checking')
         return expandedIC === `${itemCategory.id}`
     }
 

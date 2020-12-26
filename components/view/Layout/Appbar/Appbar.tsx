@@ -5,7 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import OrdersContext from '../../../contexts/Orders/OrdersContext';
-import { useIsMounted } from "../../../custom-hooks/useIsMounted";
+
+import IOrder from "../../../model/IOrder";
 
 const useStyles = makeStyles({
     ShoppingCartIcon: {
@@ -21,20 +22,11 @@ export default function AppbarView() {
     const { orders, setOrders } = useContext(OrdersContext);
 
     useEffect(() => {
-        if (orders && orders.length > 0) {
-            setOrdersLength(orders.length);
+        if (orders) {
+            setOrdersLength(orders.length)
         }
-
-        if (orders.length == 0) {
-            setOrders([
-                {
-                    id: 1,
-                    items: [],
-                }
-            ])
-            setOrdersLength(1)
-        }
-
+        
+        setOrders([...orders])
     }, []);
 
     return (

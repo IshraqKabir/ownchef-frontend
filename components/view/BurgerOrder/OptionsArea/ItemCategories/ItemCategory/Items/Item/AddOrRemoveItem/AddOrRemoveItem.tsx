@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Box, makeStyles, Typography } from "@material-ui/core";
 import IItem from "../../../../../../../../model/Item";
 
@@ -21,8 +22,17 @@ const AddOrRemoveItem: React.FC<IProps> = ({ item }) => {
     const classes = useStyle();
     const [quantity, setQuantity] = useLocalState<number>(`item-${item.id}-quantity`, 0);
 
-    const addItem = (quantity: number, currentOrderID: number, item: IItem) => {
+    const { currentOrderID, changeItemQuantity } = useContext(OrdersContext);
 
+    const addItem = () => {
+        changeItemQuantity(item, quantity + 1, currentOrderID, "");
+        setQuantity(quantity + 1)
+    }
+
+    const removeItem = () => {
+        if (quantity < 1) return;
+        changeItemQuantity(item, quantity - 1, currentOrderID, "");
+        setQuantity(quantity - 1)
     }
 
     return (
@@ -30,13 +40,11 @@ const AddOrRemoveItem: React.FC<IProps> = ({ item }) => {
             {quantity > 0 ?
                 <>
 
-                    <RemoveIcon className={classes.icon} fontSize="small" onClick={() => {
-                        if (quantity > 0) setQuantity(quantity - 1)
-                    }} />
+                    <RemoveIcon className={classes.icon} fontSize="small" onClick={removeItem} />
                     <Typography variant="caption">{quantity}</Typography>
                 </>
                 : null}
-            <AddIcon className={classes.icon} fontSize="small" onClick={() => setQuantity(quantity + 1)} />
+            <AddIcon className={classes.icon} fontSize="small" onClick={addItem} />
         </Box>
     )
 }

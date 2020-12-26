@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 
 import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import ItemCategories from './ItemCategories/ItemCategories';
 import IITemCategory from '../../../model/IItemCategory';
+import OrdersContext from '../../../contexts/Orders/OrdersContext';
 
 interface IProps {
     itemCategories: IITemCategory[];
@@ -31,6 +32,8 @@ const OptionsArea: React.FC<IProps> = ({ itemCategories }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     const classes = useStyles();
+
+    const { orders, currentOrderID, setCurrentOrderID } = useContext(OrdersContext)
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent,
@@ -65,6 +68,9 @@ const OptionsArea: React.FC<IProps> = ({ itemCategories }) => {
             >
                 <ItemCategories itemCategories={itemCategories} />
             </SwipeableDrawer>
+            <Typography variant="h6">
+                {JSON.stringify(orders, null, 6)}
+            </Typography>
         </div>
     );
 }

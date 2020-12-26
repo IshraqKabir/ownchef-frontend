@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 function useLocalState<T>(key: string, defaultValue: T) {
     const [value, setValue] = useState(() => {
         if (process.browser) {
-            const storedValue = localStorage.getItem(key);
-            return storedValue === null ? defaultValue : JSON.parse(storedValue);
+            const storedValue = JSON.parse(localStorage.getItem(key));
+            if (!storedValue) {
+                return defaultValue;
+            }
+            return storedValue === null ? defaultValue : storedValue;
+        } else {
+            return defaultValue;
         }
     });
 
@@ -29,6 +34,15 @@ function useLocalState<T>(key: string, defaultValue: T) {
             return result;
         });
     };
+
+    useEffect(() => {
+        const storedValue = JSON.parse(localStorage.getItem(key));
+        if (storedValue) {
+            setValueInLocalStorage(storedValue);
+        } else {
+            setValueInLocalStorage(value);
+        }
+    }, []);
 
     return [value, setValueInLocalStorage];
 };
